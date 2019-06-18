@@ -9,7 +9,7 @@ void multiply(struct int_struct multiplier, struct int_struct multiplicand, stru
 	int **array2, *tmp_return, i, j, total, onesdigit, tensdigit;
      
 	allocate_mem(&array2, multiplier.arraylength + multiplicand.arraylength,multiplicand.arraylength);
-        tmp_return = malloc((multiplier.arraylength + multiplicand.arraylength)* sizeof(int));
+        tmp_return = (int*)malloc((multiplier.arraylength + multiplicand.arraylength) * sizeof(int));
 
 	for (i = multiplicand.arraylength - 1; i >= 0; i--){
 		for (j = multiplier.arraylength - 1; j >= 0;j --){
@@ -55,7 +55,7 @@ void multiply(struct int_struct multiplier, struct int_struct multiplicand, stru
 		}
 	}	
 
-	dest->array = calloc((multiplier.arraylength + multiplicand.arraylength - j) , sizeof(int));
+	dest->array = (int*)malloc((multiplier.arraylength + multiplicand.arraylength - j) * sizeof(int));
 
         for (i = 0; i <= multiplier.arraylength + multiplicand.arraylength - j - 1; i++){
                 dest->array[i] = tmp_return[i + j];
