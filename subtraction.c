@@ -20,7 +20,7 @@ void subtract(struct int_struct minuend, struct int_struct subtrahend, struct in
 	}
 
 	tmp_minuend = (int*)malloc(length * sizeof(int));
-	tmp_subtrahend = (int*)malloc(length *sizeof(int));
+	tmp_subtrahend = (int*)malloc(length * sizeof(int));
 	tmp_return = (int*)malloc(length * sizeof(int));
 	
         for (i = 0; i <= minuend.arraylength - 1; i++){
@@ -57,10 +57,9 @@ void subtract(struct int_struct minuend, struct int_struct subtrahend, struct in
 	dest->arraylength = length - j;
 
       
-	//free(tmp_return);
-	//free(tmp_minuend);
-	//free(tmp_subtrahend);
-        return;
+	free(tmp_return);
+	free(tmp_minuend);
+	free(tmp_subtrahend);
 }
 
 int greaterthan(struct int_struct a, struct int_struct b){
