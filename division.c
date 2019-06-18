@@ -23,7 +23,7 @@ void divide(struct int_struct numerator, struct int_struct denominator, struct i
                 dest->array[0] = -1;
         }
         else{
-                struct int_struct ten, tmp, tmp_return;
+                struct int_struct ten, tmp_return;
                 int i, j = 0, shift, count = 0, yes = 0;
 
                 ten.array = (int*)malloc(2 * sizeof(int));
@@ -37,10 +37,8 @@ void divide(struct int_struct numerator, struct int_struct denominator, struct i
                 while (j <= 10){
                         if (greaterthan(numerator, denominator) == -1){
                                 multiply(numerator, ten, &numerator);
-                                printf("%d\n",j);
                         }
                         else{
-                                printf("wtf: %d\n",greaterthan(numerator,denominator));
                                 while(greaterthan(numerator, denominator) == 1){
                                         subtract(numerator, denominator, &numerator);
                                         count++;
@@ -49,7 +47,6 @@ void divide(struct int_struct numerator, struct int_struct denominator, struct i
                                 tmp_return.array = (int*)realloc(tmp_return.array, sizeof(int) * (tmp_return.arraylength));
 
                                 tmp_return.array[tmp_return.arraylength - 1] = count;
-                                printf("%d\n",j);
                                 count = 0;
                                 yes = 1;
                         }
@@ -61,5 +58,8 @@ void divide(struct int_struct numerator, struct int_struct denominator, struct i
                 for (i = 0; i <= tmp_return.arraylength - 1; i++){
                         dest->array[i] = tmp_return.array[i];
                 }
+                
+                free(tmp_return.array);
+                free(ten.array);
         }
 }
