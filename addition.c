@@ -5,7 +5,7 @@
 #include "addition.h"
 
 void add(struct int_struct augend, struct int_struct addend, struct int_struct *dest){
-        int *tmp_augend, *tmp_addend, *tmp_return, length=0, shift1=0, shift2=0, i=0, j=0, total=0, onesdigit=0, tensdigit=0;
+       	int *tmp_augend, *tmp_addend, *tmp_return, length=0, shift1=0, shift2=0, i=0, j=0, total=0, onesdigit=0, tensdigit=0;
 
         if (augend.arraylength >= addend.arraylength){
 		length = augend.arraylength;
@@ -18,9 +18,9 @@ void add(struct int_struct augend, struct int_struct addend, struct int_struct *
 		shift2 = length - addend.arraylength;
 	}
 
-        tmp_augend = malloc(length* sizeof(int));
-        tmp_addend = malloc(length* sizeof(int));
-        tmp_return = malloc((length + 1)* sizeof(int));
+        tmp_augend = (int*)malloc(length* sizeof(int));
+        tmp_addend = (int*)malloc(length* sizeof(int));
+        tmp_return = (int*)malloc((length + 1)* sizeof(int));
 
         for (i = 0; i <= augend.arraylength - 1; i++){
                 tmp_augend[i + shift1] = augend.array[i];
@@ -53,14 +53,14 @@ void add(struct int_struct augend, struct int_struct addend, struct int_struct *
 			j++;
 		}
 	}
-	dest->array = (int*)calloc((length - j) , sizeof(int));
+	dest->array = (int*)malloc((length - j) * sizeof(int));
 
 	for (i = 0; i <= length - j ; i++){
 		dest->array[i] = tmp_return[i + j];
         }
 	dest->arraylength = length - j + 1;
-        //free(tmp_augend);
-	//free(tmp_addend);
-	//free(tmp_return);
-        return;
+        
+	free(tmp_augend);
+	free(tmp_addend);
+	free(tmp_return);
 }
